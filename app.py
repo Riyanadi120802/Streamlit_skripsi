@@ -8,7 +8,19 @@ import torch.nn.functional as F
 class Model(nn.Module):
     def __init__(self, in_channels=1):
         super(Model, self).__init__()
-        # Define your object detection model here
+
+        self.model = models.mobilenet_v2(pretrained=True)
+
+        # Tambahkan layer dropout setelah layer convolution
+        self.model.features[13].dropout = nn.Dropout(0.2)
+        self.model.features[15].dropout = nn.Dropout(0.2)
+        self.model.features[17].dropout = nn.Dropout(0.2)
+
+        # Ganti layer fc dengan layer fc baru dan tambahkan layer dropout
+        self.model.classifier = nn.Sequential(
+            nn.Dropout(0.5),
+            nn.Linear(self.model.last_channel, 2)
+        )
 
     def forward(self, x):
         return self.model.forward(x)
