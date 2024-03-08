@@ -50,7 +50,7 @@ labels_data ={
 def image_pred(model, image_transforms, image_path, labels_data):
     image = Image.open(image_path).convert('RGB')
 
-    resize_image = image.resize((128,128))
+    resize_image = image.resize((256,256))
 
     image = image_transforms(image).float()
     image = image.unsqueeze(0).to(device)
@@ -62,7 +62,7 @@ def image_pred(model, image_transforms, image_path, labels_data):
     return labels_data[classes.item()], round(conf.item(), 3), resize_image
 
 # Define UI
-st.title('Deploying PyTorch Model to Streamlit')
+st.title('Klasifikasi Kelayakan Botol Plastik Untuk Dijadikan Kerajinan')
 
 # Pilihan menggunakan kamera atau unggah gambar
 option = st.selectbox('Pilih sumber gambar:', ('Kamera', 'Unggah Gambar'))
