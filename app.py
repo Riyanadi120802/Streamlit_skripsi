@@ -29,7 +29,7 @@ class Model(nn.Module):
 
 # Load model
 model = Model() # Ganti dengan definisi model Anda
-model.load_state_dict(torch.load('Adam_00001_2_dataCampuran.pt', map_location=torch.device('cpu'))) # Ganti dengan nama file model Anda dan sesuaikan dengan perangkat yang digunakan
+model.load_state_dict(torch.load('adam20_0001_finetuningdo.pt', map_location=torch.device('cpu'))) # Ganti dengan nama file model Anda dan sesuaikan dengan perangkat yang digunakan
 model.eval()
 
 # Define transform
